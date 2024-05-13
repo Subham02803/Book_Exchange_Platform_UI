@@ -9,7 +9,8 @@ import { COMMON_URL } from "../constants/URL";
 import { Box, FormControl, Grid, InputLabel, MenuItem, OutlinedInput, Select } from "@mui/material";
 import { useCookies } from "react-cookie";
 import Loading from "../main/Loading";
-import { useSelector } from "react-redux";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const BookDetails = () => {
     const [data, setData] = useState([]);
@@ -91,7 +92,10 @@ const BookDetails = () => {
             setIsSaved(true);
             setEnableEditDeleteBtn(false);
         }).catch((error) => {
-            console.error('userinfo failed:', error);
+            toast.error('Failed to add/edit book.', {
+                position: toast.POSITION.TOP_RIGHT,
+                style: { backgroundColor: 'red', color: '#fff' },
+            });
             setIsLoading(false);
         }).finally(() => {
             setId(null);

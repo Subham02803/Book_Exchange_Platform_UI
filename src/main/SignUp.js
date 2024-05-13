@@ -4,7 +4,7 @@ import { makeStyles } from "@mui/styles";
 import { useTheme } from '@mui/material/styles';
 import axios from 'axios';
 import { COMMON_URL } from '../constants/URL';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -96,7 +96,7 @@ const SignUp = () => {
             });
             return;
         }
-        if (password === password2) {
+        if (password !== password2) {
             toast.error('Passwords does not match', {
                 position: toast.POSITION.TOP_RIGHT,
                 style: { backgroundColor: 'red', color: '#fff' },
@@ -209,22 +209,9 @@ const SignUp = () => {
                     >
                         SignUp
                     </Button>
-                    <Typography className={classes.or}>OR</Typography>
-                    <Button
-                        fullWidth
-                        variant="contained"
-                        className={classes.googleButton}
-                        onClick={handleGoogleSignIn}
-                    >
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google Logo" className={classes.googleIcon} />
-                        Sign up with Google
-                    </Button>
-                    <Dialog open={isDialogOpen} onClose={handleDialog}>
-                        <DialogTitle>Validate OTP</DialogTitle>
-                        <DialogContent>
-                            
-                        </DialogContent>
-                    </Dialog>
+                    <Typography>
+                        Already have an account? <Link to="/login">Login</Link>
+                    </Typography>
                 </div>
             </Container>
         </div>

@@ -4,7 +4,7 @@ import { makeStyles } from "@mui/styles";
 import { useTheme } from '@mui/material/styles';
 import axios from 'axios';
 import { COMMON_URL } from '../constants/URL';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -185,8 +185,9 @@ const Login = () => {
                     >
                         Login
                     </Button>
-                    <Typography className={classes.or}>OR</Typography>
-                    <GoogleLogin onSuccess={handleGoogleSignIn} onError={handleGoogleErrorSignIn} />
+                    <Typography>
+                        Don't have an account? <Link to="/signup">Sign Up</Link>
+                    </Typography>
                 </div>
             </Container>
         </div>
